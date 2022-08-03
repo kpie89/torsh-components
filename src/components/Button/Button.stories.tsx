@@ -1,24 +1,31 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import Button from './Button';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'ReactComponentLibrary/Button',
+  title: 'Button',
   component: Button,
+  argTypes: {
+    variant: {
+      options: ['contained', 'text', 'outlined'],
+      control: { type: 'radio' }
+    },
+    color: {
+      options: ['primary', 'warning'],
+      control: { type: 'radio' }
+    },
+  }
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
-export const HelloWorld = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-HelloWorld.args = {
-  label: 'Hello world!',
-};
+export const Default = Template.bind({});
 
-export const ClickMe = Template.bind({});
-ClickMe.args = {
-  label: 'Click me!',
+Default.args = {
+  label: 'Torsh Button',
+  text: 'Upload New',
+  rounded: false,
+  variant: "contained",
+  color: "primary",
+  onClick: () => console.log('Clicked!'),
 };
